@@ -22,6 +22,18 @@ RUN sudo chown -R coder:coder /home/coder/.local
 # You can add custom software and dependencies for your environment below
 # -----------
 
+# Note: we use a different marketplace than VS Code. See https://github.com/cdr/code-server/blob/main/docs/FAQ.md#differences-compared-to-vs-code
+RUN code-server --install-extension esbenp.prettier-vscode
+RUN code-server --install-extension dbaeumer.vscode-eslint
+RUN code-server --install-extension GitHub.github-vscode-theme
+RUN code-server --install-extension dsznajder.es7-react-js-snippets
+	
+# Install NodeJS & Python
+RUN sudo curl -fsSL https://deb.nodesource.com/setup_15.x | sudo bash -
+RUN sudo apt-get install -y nodejs
+RUN sudo apt-get install -y python3-pip
+
+
 # Install a VS Code extension:
 # Note: we use a different marketplace than VS Code. See https://github.com/cdr/code-server/blob/main/docs/FAQ.md#differences-compared-to-vs-code
 # RUN code-server --install-extension esbenp.prettier-vscode
